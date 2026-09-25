@@ -1,0 +1,37 @@
+{
+  "name": "audio-quick-play",
+  "displayName": "Audio Quick Play",
+  "description": "Play audio files immediately in the background when opened from the VS Code Explorer.",
+  "version": "0.1.0",
+  "publisher": "farhan",
+  "license": "MIT",
+  "engines": { "vscode": "^1.90.0" },
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "categories": ["Other"],
+  "commands": [
+    { "command": "audioQuickPlay.stop", "title": "Audio Quick Play: Stop" }
+  ],
+  "contributes": {
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "audioQuickPlay.stop",
+          "when": "resourceExtname == .mp3 || resourceExtname == .wav || resourceExtname == .m4a || resourceExtname == .flac || resourceExtname == .ogg || resourceExtname == .aac || resourceExtname == .wma",
+          "group": "navigation@99"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "npm run compile && npx @vscode/vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.5.0",
+    "@vscode/vsce": "^3.2.1"
+  }
+}
