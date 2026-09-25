@@ -1,18 +1,42 @@
 {
   "name": "audio-quick-play",
   "displayName": "Audio Quick Play",
-  "description": "Play audio files immediately in the background when opened from the VS Code Explorer.",
-  "version": "0.1.0",
+  "description": "Double-click an audio file in the Explorer and it plays immediately in its own player tab.",
+  "version": "0.1.1",
   "publisher": "farhan",
   "license": "MIT",
   "engines": { "vscode": "^1.90.0" },
-  "activationEvents": ["onStartupFinished"],
+  "activationEvents": [
+    "onCustomEditor:audioQuickPlay.player",
+    "onCommand:audioQuickPlay.stop"
+  ],
   "main": "./out/extension.js",
   "categories": ["Other"],
   "commands": [
     { "command": "audioQuickPlay.stop", "title": "Audio Quick Play: Stop" }
   ],
   "contributes": {
+    "customEditors": [
+      {
+        "viewType": "audioQuickPlay.player",
+        "displayName": "Audio Quick Play",
+        "priority": "default",
+        "selector": [
+          { "filenamePattern": "*.{mp3,wav,m4a,flac,ogg,aac,wma}" }
+        ]
+      }
+    ],
+    "configurationDefaults": {
+      "workbench.editorAssociations": {
+        "*.mp3": "audioQuickPlay.player",
+        "*.wav": "audioQuickPlay.player",
+        "*.m4a": "audioQuickPlay.player",
+        "*.flac": "audioQuickPlay.player",
+        "*.ogg": "audioQuickPlay.player",
+        "*.aac": "audioQuickPlay.player",
+        "*.wma": "audioQuickPlay.player"
+      }
+    },
     "menus": {
       "explorer/context": [
         {
