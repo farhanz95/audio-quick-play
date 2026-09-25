@@ -2,20 +2,23 @@
   "name": "audio-quick-play",
   "displayName": "Audio Quick Play",
   "description": "Double-click an audio file in the Explorer and it plays immediately in its own player tab.",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "publisher": "farhan",
   "license": "MIT",
   "engines": { "vscode": "^1.90.0" },
+  "capabilities": {
+    "untrustedWorkspaces": { "supported": true }
+  },
   "activationEvents": [
     "onCustomEditor:audioQuickPlay.player",
     "onCommand:audioQuickPlay.stop"
   ],
   "main": "./out/extension.js",
   "categories": ["Other"],
-  "commands": [
-    { "command": "audioQuickPlay.stop", "title": "Audio Quick Play: Stop" }
-  ],
   "contributes": {
+    "commands": [
+      { "command": "audioQuickPlay.stop", "title": "Audio Quick Play: Stop" }
+    ],
     "customEditors": [
       {
         "viewType": "audioQuickPlay.player",

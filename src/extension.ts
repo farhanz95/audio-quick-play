@@ -208,7 +208,7 @@ class AudioPlayerEditorProvider implements vscode.CustomReadonlyEditorProvider<v
 			setStatus('Format not supported here — playing through Windows audio instead', 'warn');
 			vscode.postMessage({ type: 'unsupported' });
 		});
-		vscode.window.addEventListener('message', (event) => {
+		window.addEventListener('message', (event) => {
 			if (event.data && event.data.type === 'pause') {
 				audio.pause();
 			} else if (event.data && event.data.type === 'stop') {
